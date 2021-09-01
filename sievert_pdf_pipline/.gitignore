@@ -1,5 +1,3 @@
-COT2873.pdf
-Pipeline.xlsx
+*.pdf
+*.xlsx
 __pycache__
-quot_test.pdf
-Quotation.pdf
