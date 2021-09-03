@@ -1,6 +1,18 @@
 #!/usr/bin/env python3
 
-""" Program to automate the pipeline file fill with quotation information (Sievert) """
+"""spreadsheet auto-fill
+
+This script allows the user to automate the process to extract especific
+information from a quotation to fill an .xlsx file.
+
+This tool accepts comma separated value files (.xlsx).
+
+This script is required to be located in the same directory as the .pdf
+files as well as the main .xslx files
+
+This file contains the main function.
+
+"""
 
 import PyPDF2, openpyxl
 from pdf_regex_fun import *
@@ -39,7 +51,7 @@ pipeline_file.close()
 
 	# Terminal translator
 	# Create a respository to upload the project
-	# Fix style and documentation
+	# Fix style with PEP8 and documentation
 	# Add new functionalities ("")
 	# Handle errors
 	# Make de proggram portable = "pip install pyinstaller", "got to direcotry -> app", "use pyinstaller --windowed --onefile --icon=./<icon.ico> <app_name>"

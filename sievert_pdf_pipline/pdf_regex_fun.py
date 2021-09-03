@@ -1,7 +1,36 @@
 #!/usr/bin/env python3
 
+"""spreadsheet auto-fill auxiliar functions
+
+This script allows the user to automate the process to extract especific
+information from a quotation to fill an .xlsx file.
+
+This script is required to be located in the same directory as the .pdf
+files as well as the main .xslx file
+
+This file can also be imported as a module and contains the following
+functions:
+
+    * pdf_regex - returns dictionary containing the values to be
+		added to the .xlsx file
+    * fill_excel - apply style and insert values to each cell
+	* recent_pdf - get the most recent PDF file from the current directory
+
+"""
+
 def pdf_regex(pdf_text):
-	""" Function to get the values from pdf file """
+	"""Function to extract information from the pdf text variable
+	using regular expressions.
+
+    Args:
+        pdf_text: variable containing the text extracted from the pdf file
+
+    Returns:
+        The return value. dictionary containing the values to be
+		added to the .xlsx file
+
+    """
+
 	import re
 
 	dict_values = {}
@@ -35,7 +64,17 @@ def pdf_regex(pdf_text):
 	return(dict_values)
 
 def fill_excel(dict_values, work_sheet, empty_cell):
-	""" Function to apply style and values to each cell from A# to Q# """
+	"""Function to apply style and insert values to each cell from A# to Q#
+
+    Args:
+        dict_values: dictionary containing the values to be
+		added to the .xlsx file
+		work_sheet: .xlsx worksheet object
+		empty_cell: first empty cell identify in the .xlsx file
+
+    Returns:
+        The return value. None
+    """
 
 	from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font
 	from datetime import datetime
@@ -63,7 +102,14 @@ def fill_excel(dict_values, work_sheet, empty_cell):
 		style_cell.alignment = align
 
 def recent_pdf():
-	""" Function to get the most recent PDF file from the current directory """
+	"""Function to get the most recent PDF file from the current directory
+
+    Args:
+		None
+
+    Returns:
+        The return value. Most recent file name within the current directory
+    """
 
 	import glob, os
 
