@@ -1,22 +1,6 @@
 #!/usr/bin/env python3
 
-"""spreadsheet auto-fill auxiliar functions
-
-This script allows the user to automate the process to extract especific
-information from a quotation to fill an .xlsx file.
-
-This script is required to be located in the same directory as the .pdf
-files as well as the main .xslx file
-
-This file can also be imported as a module and contains the following
-functions:
-
-    * pdf_regex - returns dictionary containing the values to be
-		added to the .xlsx file
-    * fill_excel - apply style and insert values to each cell
-	* recent_pdf - get the most recent PDF file from the current directory
-
-"""
+"""spreadsheet auto-fill auxiliar functions"""
 
 def pdf_regex(pdf_text):
 	"""Function to extract information from the pdf text variable
@@ -37,11 +21,17 @@ def pdf_regex(pdf_text):
 	# Getting the quotation number
 	quotation_number = re.compile(r'No. *\d\d\d\d')
 	mo = quotation_number.search(pdf_text)
+	if not mo:
+		print("The quote number could not be found")
+		return(None)
 	dict_values['quot_number'] = mo.group()
 
 	# Getting the expedition date
 	dates = re.compile(r'(\d\d\W\d\d\W\d\d\d\d)+')
 	mo = dates.search(pdf_text)
+	if not mo:
+		print("The expedition date could not be found")
+		return(None)
 	dates_string = mo.group()
 	dates_list = []
 	dates_list.append(dates_string[:10])
@@ -54,11 +44,17 @@ def pdf_regex(pdf_text):
 	# Getting cliente
 	client_list = re.compile(r'\d{9}\D+')
 	mo = client_list.search(pdf_text)
+	if not mo:
+		print("The client could not be found")
+		return(None)
 	dict_values['client'] = mo.group()[9:]
 
 	# Value before IVA
 	value_list = re.compile(r'Subtotal\$(\d+,)?(\d+,)?(\d+,)?(\d+,)?(\d+.)?(\d+)?')
 	mo = value_list.search(pdf_text)
+	if not mo:
+		print("The Value before IVA could not be found")
+		return(None)
 	dict_values['subtotal'] = mo.group()[9:]
 
 	return(dict_values)
@@ -115,6 +111,6 @@ def recent_pdf():
 
 	file_path = '*.pdf'
 	list_files = sorted(glob.iglob(file_path), key=os.path.getctime, reverse=True)
-	print(list_files)
-
+	if (len(list_files) == 0):
+		return(None)
 	return (list_files[0])
