@@ -14,7 +14,9 @@ This file contains the main function.
 
 import PyPDF2
 import openpyxl
-from pdf_regex_fun import *
+from pdf_regex_fun import pdf_regex
+from recent_pdf import recent_pdf
+from fill_excel import fill_excel
 import sys
 
 # Getting the most recent PDF file from the current directory
@@ -68,7 +70,7 @@ for recent_pdf_file in pdf_list:
 pipeline_file.save('Pipeline.xlsx')
 pipeline_file.close()
 
-# move function to separe files
+
 # Make de proggram portable = "pip install pyinstaller",
 # "got to direcotry -> app", "use pyinstaller --windowed
 # --onefile --icon=./<icon.ico> <app_name>"
