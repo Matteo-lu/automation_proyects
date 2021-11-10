@@ -4,13 +4,15 @@
 
 
 import re
+import ctypes
 
-def pdf_regex(pdf_text):
+def pdf_regex(pdf_text, recent_pdf_file):
     """Function to extract information from the pdf text variable
     using regular expressions.
 
     Args:
         pdf_text: variable containing the text extracted from the pdf file
+        recent_pdf_file: File name
 
     Returns:
         The return value. dictionary containing the values to be
@@ -18,12 +20,21 @@ def pdf_regex(pdf_text):
 
     """
 
+    MB_OK = 0x0
+    ICON_EXLAIM=0x30
+    MessageBox = ctypes.windll.user32.MessageBoxW
+
     dict_values = {}
     # Getting the quotation number
     quotation_number = re.compile(r'No. *\d\d\d\d')
     mo = quotation_number.search(pdf_text)
     if not mo:
-        print("The quote number could not be found")
+        MessageBox(
+            None,
+            "The quote number couldn't be found inside the file " + recent_pdf_file,
+            'No data',
+            MB_OK | ICON_EXLAIM
+            )
         return(None)
     dict_values['quot_number'] = mo.group()
 
@@ -31,7 +42,12 @@ def pdf_regex(pdf_text):
     dates = re.compile(r'(\d\d\W\d\d\W\d\d\d\d)+')
     mo = dates.search(pdf_text)
     if not mo:
-        print("The expedition date could not be found")
+        MessageBox(
+            None,
+            "The expedition date couldn't be found inside the file " + recent_pdf_file,
+            'No data',
+            MB_OK | ICON_EXLAIM
+            )
         return(None)
     dates_string = mo.group()
     dates_list = []
@@ -46,7 +62,12 @@ def pdf_regex(pdf_text):
     client_list = re.compile(r'\d{9}\D+')
     mo = client_list.search(pdf_text)
     if not mo:
-        print("The client could not be found")
+        MessageBox(
+            None,
+            "The client couldn't be found inside the file " + recent_pdf_file,
+            'No data',
+            MB_OK | ICON_EXLAIM
+            )
         return(None)
     dict_values['client'] = mo.group()[9:]
 
@@ -56,7 +77,12 @@ def pdf_regex(pdf_text):
     )
     mo = value_list.search(pdf_text)
     if not mo:
-        print("The Value before IVA could not be found")
+        MessageBox(
+            None,
+            "The Value before IVA couldn't be found inside the file " + recent_pdf_file,
+            'No data',
+            MB_OK | ICON_EXLAIM
+            )
         return(None)
     dict_values['subtotal'] = mo.group()[9:]
 
