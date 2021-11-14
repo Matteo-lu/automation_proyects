@@ -1,7 +1,5 @@
 package com.example.demo.repositories;
 
-import java.util.UUID;
-
 import com.example.demo.models.EmployeeModel;
 
 import org.springframework.data.repository.CrudRepository;

@@ -1,9 +1,18 @@
 package com.example.demo.models;
-import java.time.LocalDate;
-import java.util.UUID;
+// import java.time.LocalDate;
+// import java.util.UUID;
 
-import javax.persistence.*;
+import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+// import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "Employee")
@@ -13,13 +22,31 @@ public class EmployeeModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique = true, nullable = false)
 	private Long id;
+
+	// @NotEmpty(message="Employee name cannot be empty")
 	private String name;
+
+	// @NotEmpty(message="Employee lastName cannot be empty")
 	private String lastName;
+
+	// @NotEmpty(message="Employee documentType cannot be empty")
 	private String documentType;
+
+	// @NotEmpty(message="Employee documentNumber cannot be empty")
 	private String documentNumber;
-	private String dateofBirth;
-	private String dateOfBonding;
+
+	// @NotEmpty(message="Employee dateofBirth cannot be empty")
+	@JsonFormat(pattern = "yyyy/MM/dd")
+	private Date dateofBirth;
+
+	// @NotEmpty(message="Employee dateOfBonding cannot be empty")
+	@JsonFormat(pattern = "yyyy/MM/dd")
+	private Date dateOfBonding;
+
+	// @NotEmpty(message="Employee position cannot be empty")
 	private String position;
+
+	// @NotEmpty(message="Employee salary cannot be empty")
 	private Double salary;
 
     /**
@@ -93,30 +120,30 @@ public class EmployeeModel {
     }
 
     /**
-     * @return String return the dateofBirth
+     * @return Date return the dateofBirth
      */
-    public String getDateofBirth() {
+    public Date getDateofBirth() {
         return dateofBirth;
     }
 
     /**
      * @param dateofBirth the dateofBirth to set
      */
-    public void setDateofBirth(String dateofBirth) {
+    public void setDateofBirth(Date dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
 
     /**
-     * @return String return the dateOfBonding
+     * @return Date return the dateOfBonding
      */
-    public String getDateOfBonding() {
+    public Date getDateOfBonding() {
         return dateOfBonding;
     }
 
     /**
      * @param dateOfBonding the dateOfBonding to set
      */
-    public void setDateOfBonding(String dateOfBonding) {
+    public void setDateOfBonding(Date dateOfBonding) {
         this.dateOfBonding = dateOfBonding;
     }
 
