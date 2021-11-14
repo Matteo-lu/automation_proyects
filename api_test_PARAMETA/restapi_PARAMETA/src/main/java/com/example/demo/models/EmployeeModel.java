@@ -10,29 +10,30 @@ import javax.persistence.*;
 public class EmployeeModel {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique = true, nullable = false)
-	private UUID id;
+	private Long id;
 	private String name;
 	private String lastName;
 	private String documentType;
 	private String documentNumber;
-	private LocalDate dateofBirth;
-	private LocalDate dateOfBonding;
+	private String dateofBirth;
+	private String dateOfBonding;
 	private String position;
 	private Double salary;
 
     /**
-     * @return UUID return the id
+     * @return Long return the id
      */
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(UUID id) {
-        this.id = UUID.randomUUID();
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -92,30 +93,30 @@ public class EmployeeModel {
     }
 
     /**
-     * @return LocalDate return the dateofBirth
+     * @return String return the dateofBirth
      */
-    public LocalDate getDateofBirth() {
+    public String getDateofBirth() {
         return dateofBirth;
     }
 
     /**
      * @param dateofBirth the dateofBirth to set
      */
-    public void setDateofBirth(LocalDate dateofBirth) {
+    public void setDateofBirth(String dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
 
     /**
-     * @return LocalDate return the dateOfBonding
+     * @return String return the dateOfBonding
      */
-    public LocalDate getDateOfBonding() {
+    public String getDateOfBonding() {
         return dateOfBonding;
     }
 
     /**
      * @param dateOfBonding the dateOfBonding to set
      */
-    public void setDateOfBonding(LocalDate dateOfBonding) {
+    public void setDateOfBonding(String dateOfBonding) {
         this.dateOfBonding = dateOfBonding;
     }
 
