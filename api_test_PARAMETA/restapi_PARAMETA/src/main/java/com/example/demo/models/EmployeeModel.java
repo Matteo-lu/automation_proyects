@@ -1,8 +1,5 @@
 package com.example.demo.models;
-// import java.time.LocalDate;
-// import java.util.UUID;
 
-import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,9 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-// import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "Employee")
@@ -23,34 +20,33 @@ public class EmployeeModel {
 	@Column(unique = true, nullable = false)
 	private Long id;
 
-	// @NotEmpty(message="Employee name cannot be empty")
+	@NotEmpty(message = "Employee name cannot be empty")
 	private String name;
 
-	// @NotEmpty(message="Employee lastName cannot be empty")
+	@NotEmpty(message="Employee lastName cannot be empty")
 	private String lastName;
 
-	// @NotEmpty(message="Employee documentType cannot be empty")
+	@NotEmpty(message="Employee documentType cannot be empty")
 	private String documentType;
 
-	// @NotEmpty(message="Employee documentNumber cannot be empty")
+	@NotEmpty(message="Employee documentNumber cannot be empty")
 	private String documentNumber;
 
-	// @NotEmpty(message="Employee dateofBirth cannot be empty")
-	@JsonFormat(pattern = "yyyy/MM/dd")
-	private Date dateofBirth;
+	@NotEmpty(message="Employee dateofBirth cannot be empty")
+	private String dateofBirth;
 
-	// @NotEmpty(message="Employee dateOfBonding cannot be empty")
-	@JsonFormat(pattern = "yyyy/MM/dd")
-	private Date dateOfBonding;
+	@NotEmpty(message="Employee dateOfBonding cannot be empty")
+	private String dateOfBonding;
 
-	// @NotEmpty(message="Employee position cannot be empty")
+	@NotEmpty(message="Employee position cannot be empty")
 	private String position;
 
-	// @NotEmpty(message="Employee salary cannot be empty")
+	@NotNull(message = "Employee salary cannot be empty")
 	private Double salary;
 
+
     /**
-     * @return Long return the id
+     * @return Integer return the id
      */
     public Long getId() {
         return id;
@@ -120,30 +116,30 @@ public class EmployeeModel {
     }
 
     /**
-     * @return Date return the dateofBirth
+     * @return String return the dateofBirth
      */
-    public Date getDateofBirth() {
+    public String getDateofBirth() {
         return dateofBirth;
     }
 
     /**
      * @param dateofBirth the dateofBirth to set
      */
-    public void setDateofBirth(Date dateofBirth) {
+    public void setDateofBirth(String dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
 
     /**
-     * @return Date return the dateOfBonding
+     * @return String return the dateOfBonding
      */
-    public Date getDateOfBonding() {
+    public String getDateOfBonding() {
         return dateOfBonding;
     }
 
     /**
      * @param dateOfBonding the dateOfBonding to set
      */
-    public void setDateOfBonding(Date dateOfBonding) {
+    public void setDateOfBonding(String dateOfBonding) {
         this.dateOfBonding = dateOfBonding;
     }
 

@@ -3,6 +3,8 @@ package com.example.demo.controllers;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.example.demo.models.EmployeeModel;
 import com.example.demo.services.EmployeeService;
 
@@ -27,7 +29,7 @@ public class EmployeeController{
 	}
 
 	@PostMapping()
-	public EmployeeModel saveEmployee(@RequestBody EmployeeModel employee){
+	public EmployeeModel saveEmployee(@Valid @RequestBody EmployeeModel employee){
 		return this.employeeService.saveEmployee(employee);
 	}
 
