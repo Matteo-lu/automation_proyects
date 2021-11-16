@@ -1,6 +1,6 @@
 # Spring Boot Employee test project for PARAMETA company
 
-This is a example Java / Spring Boot (version 2.5.6) application built as interview test for PARAMETA company.
+This is an example Java / Spring Boot (version 2.5.6) application built as interview test for PARAMETA company.
 
 ## How to Run
 
@@ -23,6 +23,11 @@ Once the application runs you should see something like this
 The service is just a simple Employee REST service. It uses a mySQL database to store the data.  If your database connection properties work, you can call some REST endpoints through localhost on **port 80800**.
 
 Here are the endpoints you can call:
+### Project documentation
+
+```
+http://localhost:8080/swagger-ui.html
+```
 
 ### Get all employees
 
