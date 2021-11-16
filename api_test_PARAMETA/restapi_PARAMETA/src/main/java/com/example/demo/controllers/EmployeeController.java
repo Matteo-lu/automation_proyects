@@ -30,6 +30,7 @@ public class EmployeeController{
 
 	@PostMapping()
 	public EmployeeModel saveEmployee(@Valid @RequestBody EmployeeModel employee){
+		System.out.println(employee);
 		return this.employeeService.saveEmployee(employee);
 	}
 
@@ -37,6 +38,7 @@ public class EmployeeController{
 	public Optional<EmployeeModel> getEmployeeById(@PathVariable("id") Long id){
 		return this.employeeService.geteById(id);
 	}
+
 
 	@DeleteMapping(path = "/{id}")
 	public String deleteById(@PathVariable("id") Long id){

@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -32,11 +37,15 @@ public class EmployeeModel {
 	@NotEmpty(message="Employee documentNumber cannot be empty")
 	private String documentNumber;
 
-	@NotEmpty(message="Employee dateofBirth cannot be empty")
-	private String dateofBirth;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
+	@NotNull(message="Employee dateOfBirth cannot be empty")
+	private LocalDate  dateOfBirth;
 
-	@NotEmpty(message="Employee dateOfBonding cannot be empty")
-	private String dateOfBonding;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
+	@NotNull(message="Employee dateOfBonding cannot be empty")
+	private LocalDate dateOfBonding;
 
 	@NotEmpty(message="Employee position cannot be empty")
 	private String position;
@@ -44,9 +53,8 @@ public class EmployeeModel {
 	@NotNull(message = "Employee salary cannot be empty")
 	private Double salary;
 
-
     /**
-     * @return Integer return the id
+     * @return Long return the id
      */
     public Long getId() {
         return id;
@@ -116,30 +124,30 @@ public class EmployeeModel {
     }
 
     /**
-     * @return String return the dateofBirth
+     * @return LocalDate return the dateOfBirth
      */
-    public String getDateofBirth() {
-        return dateofBirth;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
     /**
-     * @param dateofBirth the dateofBirth to set
+     * @param dateOfBirth the dateOfBirth to set
      */
-    public void setDateofBirth(String dateofBirth) {
-        this.dateofBirth = dateofBirth;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     /**
-     * @return String return the dateOfBonding
+     * @return LocalDate return the dateOfBonding
      */
-    public String getDateOfBonding() {
+    public LocalDate getDateOfBonding() {
         return dateOfBonding;
     }
 
     /**
      * @param dateOfBonding the dateOfBonding to set
      */
-    public void setDateOfBonding(String dateOfBonding) {
+    public void setDateOfBonding(LocalDate dateOfBonding) {
         this.dateOfBonding = dateOfBonding;
     }
 
