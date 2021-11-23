@@ -1,4 +1,4 @@
-# Spring Boot Employee test project for PARAMETA company
+# Spring Boot Employee API test project for PARAMETA company
 
 This is an example Java / Spring Boot (version 2.5.6) application built as interview test for PARAMETA company.
 
